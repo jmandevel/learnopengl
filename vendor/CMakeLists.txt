@@ -24,6 +24,6 @@ FetchContent_MakeAvailable(assimp)
 Include(FetchContent)
 FetchContent_Declare(gld
     GIT_REPOSITORY https://github.com/jmandevel/gld.h
-    GIT_TAG        3.0
+    GIT_TAG        3.0.1.0
 )
 FetchContent_MakeAvailable(gld)
