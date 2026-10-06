@@ -1,3 +1,4 @@
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 #include <gld/gld.h>
@@ -10,13 +11,13 @@ int main() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #if defined(__APPLE__)
-  // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE)
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE)
 #endif
 
-  glfwSetErrorCallback([](int error_code, const char *description) {
-    std::cout << "GLFW ERROR " << error_code << ": " << description
-              << std::endl;
-  });
+      glfwSetErrorCallback([](int error_code, const char *description) {
+        std::cout << "GLFW ERROR " << error_code << ": " << description
+                  << std::endl;
+      });
 
   GLFWwindow *window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
   if (window == NULL) {
@@ -24,6 +25,15 @@ int main() {
     glfwTerminate();
     return -1;
   }
+
+  glfwSetKeyCallback(window, [](GLFWwindow *window, int key, int scancode,
+                                int action, int mods) {
+    if (key == GLFW_KEY_W && action == GLFW_PRESS) {
+      gldPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    } else if (key == GLFW_KEY_F && action == GLFW_PRESS) {
+      gldPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+  });
 
   glfwMakeContextCurrent(window);
 

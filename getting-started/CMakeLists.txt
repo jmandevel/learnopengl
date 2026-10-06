@@ -1,1 +1,5 @@
 add_subdirectory(hello-window)
+add_subdirectory(hello-triangle)
+add_subdirectory(hello-square)
+add_subdirectory(vertex-out)
+add_subdirectory(uniforms)
